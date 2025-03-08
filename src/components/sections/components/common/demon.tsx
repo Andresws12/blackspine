@@ -1,52 +1,61 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-
-import Style from "./demon.module.scss";
+import styles from "./demon.module.scss";
 
 export default function Demon() {
   const leftPupilRef = useRef<HTMLDivElement>(null);
   const rightPupilRef = useRef<HTMLDivElement>(null);
-  const eyesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const movePupils = (clientX: number, clientY: number) => {
       const pupils = [leftPupilRef.current, rightPupilRef.current];
 
       pupils.forEach((pupil) => {
-        if (!pupil) {
-          return;
-        }
+        if (!pupil) return;
 
         const rect = pupil.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / 150 + "px";
-        const y = (e.clientY - rect.top) / 150 + "px";
+        const x = (clientX - rect.left) / 150 + "px";
+        const y = (clientY - rect.top) / 150 + "px";
         pupil.style.transform = `translate3d(${x}, ${y}, 0px)`;
       });
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      movePupils(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        movePupils(touch.clientX, touch.clientY);
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
   return (
-    <div className={Style.demon}>
+    <div className={styles.demon}>
       <Image src="/img/satan.png" alt="Demon" width={350} height={350} />
-      <div ref={eyesRef} className={Style.demon__eyes_wrapper}>
-        <div className={`${Style.demon__eyes} ${Style.demon__eyes_left}`}>
+      <div className={styles.demon__eyes_wrapper}>
+        <div className={`${styles.demon__eyes} ${styles.demon__eyes_left}`}>
           <div
             ref={leftPupilRef}
-            className={`${Style.demon__pupil} ${Style.demon__pupil_left}`}
-          ></div>
+            className={`${styles.demon__pupil} ${styles.demon__pupil_left}`}
+          />
         </div>
-        <div className={`${Style.demon__eyes} ${Style.demon__eyes_right}`}>
+        <div className={`${styles.demon__eyes} ${styles.demon__eyes_right}`}>
           <div
             ref={rightPupilRef}
-            className={`${Style.demon__pupil} ${Style.demon__pupil_right}`}
-          ></div>
+            className={`${styles.demon__pupil} ${styles.demon__pupil_right}`}
+          />
         </div>
       </div>
     </div>
