@@ -1,0 +1,26 @@
+// This file is only to apply styles on
+// html, body or global html tags
+// stylelint-disable-next-line
+
+// stylelint-disable-next-line
+body {
+  margin: 0;
+  display: flex;
+}
+
+body {
+  min-height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  background: var(--main-color-background);
+  color: var(--dark-color);
+  font-size: 1.15rem;
+  scroll-behavior: smooth;
+  width: 100%;
+}

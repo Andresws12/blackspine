@@ -1,0 +1,60 @@
+$spacers: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem,
+);
+
+@each $size, $value in $spacers {
+  .m-#{$size} {
+    margin: $value;
+  }
+  .mt-#{$size} {
+    margin-top: $value;
+  }
+  .mb-#{$size} {
+    margin-bottom: $value;
+  }
+  .ml-#{$size} {
+    margin-left: $value;
+  }
+  .mr-#{$size} {
+    margin-right: $value;
+  }
+  .mx-#{$size} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .my-#{$size} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+}
+
+@each $size, $value in $spacers {
+  .p-#{$size} {
+    margin: $value;
+  }
+  .pt-#{$size} {
+    margin-top: $value;
+  }
+  .pb-#{$size} {
+    margin-bottom: $value;
+  }
+  .pl-#{$size} {
+    margin-left: $value;
+  }
+  .pr-#{$size} {
+    margin-right: $value;
+  }
+  .px-#{$size} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .py-#{$size} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+}

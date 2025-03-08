@@ -1,0 +1,26 @@
+@use "@/assets/styles/animations/text-focus-in" as *;
+@use "@/assets/styles/mixins/media-queries" as *;
+.main {
+  text-align: center;
+  flex-wrap: nowrap;
+  flex: 1;
+  place-content: center;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  &_title {
+    font-size: 15vw;
+    -webkit-animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+      both;
+    animation: text-focus-in 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  @include desktop-large {
+    &_title {
+      font-size: 8vw;
+    }
+  }
+}
